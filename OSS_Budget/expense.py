@@ -7,4 +7,6 @@ class Expense:
         self.amount = amount
 
     def __str__(self):
-        return f"[{self.date}] {self.category} - {self.description}: {self.amount}원"
+        if self.date is not None:
+            return f"[{self.date}] {self.category} - {self.description}: {self.amount}원"
+        return f"{self.category} - {self.description}: {self.amount}원"  # 고정 지출

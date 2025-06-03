@@ -5,6 +5,7 @@ class Budget:
     def __init__(self):
         self.expenses = []
         self.counts = {}
+        self.fixed_expenses = []
 
     def add_expense(self, category, description, amount):
         self.counts[category] = self.counts.get(category, 0) + 1
@@ -12,6 +13,11 @@ class Budget:
         expense = Expense(today, category, description, amount)
         self.expenses.append(expense)
         print("지출이 추가되었습니다.\n")
+        
+    def add_fixed_expense(self, category, description, amount):
+        fixed_expense = Expense(None, category, description, amount)
+        self.fixed_expenses.append(fixed_expense)
+        print("고정 지출이 추가되었습니다.\n")
 
     def list_expenses(self):
         if not self.expenses:
@@ -19,6 +25,13 @@ class Budget:
             return
         print("\n[지출 목록]")
         for idx, e in enumerate(self.expenses, 1):
+            print(f"{idx}. {e}")
+        print()
+        
+        if not self.fixed_expenses:
+            return
+        print("(월 고정 지출)")
+        for idx, e in enumerate(self.fixed_expenses, 1):
             print(f"{idx}. {e}")
         print()
         
